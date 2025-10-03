@@ -1,0 +1,240 @@
+/* Reset e base */
+:root{
+  --bg: #0f172a;        /* slate-900 */
+  --bg-card: #111827;   /* gray-900 */
+  --text: #e5e7eb;      /* gray-200 */
+  --muted: #9ca3af;     /* gray-400 */
+  --accent: #38bdf8;    /* sky-400 */
+  --primary: #22c55e;   /* green-500 */
+  --warning: #f59e0b;   /* amber-500 */
+  --danger: #ef4444;    /* red-500 */
+  --line: #d1d5db;      /* gray-300 */
+}
+
+.light{
+  --bg: #f9fafb;
+  --bg-card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #0ea5e9;
+  --primary: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --line: #374151;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  background: var(--bg);
+  color: var(--text);
+  line-height:1.6;
+}
+
+.container{ width:min(1100px, 92%); margin-inline:auto; }
+
+header{ padding:32px 0 12px; }
+h1{font-size: clamp(1.8rem, 2.5vw, 2.6rem); margin:0 0 6px}
+.tagline{color:var(--muted); margin:0 0 16px}
+
+/* Grid de controles + caixa de dica grande */
+.controls-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:12px;
+  align-items:stretch;
+  margin-bottom: 10px;
+}
+@media (max-width: 900px){
+  .controls-grid{ grid-template-columns: 1fr; }
+}
+
+.controls-left{
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  background:var(--bg-card); padding:12px; border-radius:14px; border:1px solid rgba(255,255,255,.06);
+}
+
+.controls-left label{font-weight:600}
+select, button{
+  border-radius:10px; border:1px solid rgba(255,255,255,.12);
+  background:transparent; color:var(--text); padding:10px 12px; font-weight:600
+}
+button{cursor:pointer}
+button.primary{background:var(--primary); border-color:transparent; color:#fff}
+button.secondary{background:var(--accent); border-color:transparent; color:#00111a}
+button.ghost{background:transparent}
+button:disabled{opacity:.6; cursor:not-allowed}
+
+/* Dica gigante para telão */
+.dica-box{
+  background:var(--bg-card);
+  border:2px solid var(--accent);
+  border-radius:14px;
+  padding:18px 20px;
+  display:flex; flex-direction:column; justify-content:center;
+  min-height: 72px;
+}
+.dica-titulo{
+  font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  font-size: .9rem; color: var(--muted); margin-bottom: 6px;
+}
+.dica-conteudo{
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Área do jogo */
+.game{
+  display:grid; grid-template-columns: 1fr 1.3fr; gap:20px;
+}
+@media (max-width: 900px){
+  .game{ grid-template-columns: 1fr; }
+}
+
+.forca{
+  background:var(--bg-card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:16px; display:flex; align-items:center; justify-content:center;
+}
+.forca svg{
+  width:100%; max-width:340px; height:auto;
+  stroke: var(--line); stroke-width:4; fill:none; stroke-linecap:round;
+}
+.forca .p1, .forca .p2, .forca .p3, .forca .p4, .forca .p5, .forca .p6{ opacity:0 }
+.forca .show-1 .p1, .forca .show-2 .p2, .forca .show-3 .p3, .forca .show-4 .p4, .forca .show-5 .p5, .forca .show-6 .p6{ opacity:1 }
+
+.painel{
+  background:var(--bg-card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px; padding:16px;
+}
+.status{ display:grid; grid-template-columns: repeat(2,1fr); gap:10px; margin-bottom:10px; }
+@media (max-width: 700px){ .status{ grid-template-columns: 1fr; } }
+.status div{ background: rgba(255,255,255,.04); padding:10px; border-radius:10px; }
+
+.palavra{
+  display:flex; gap:8px; flex-wrap:wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-weight:800; font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  letter-spacing:.12em; justify-content:center; padding:14px; margin:12px 0;
+  border-bottom:2px dashed rgba(255,255,255,.08);
+}
+
+.teclado{ display:grid; grid-template-columns: repeat(13, 1fr); gap:8px; }
+@media (max-width: 700px){ .teclado{ grid-template-columns: repeat(9, 1fr); } }
+.teclado button{
+  padding:10px 0; border-radius:10px; background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08); font-weight:700
+}
+.teclado button[disabled]{ opacity:.4 }
+.teclado button.acertou{ background: rgba(34,197,94,.2); border-color: rgba(34,197,94,.5); }
+.teclado button.errou{ background: rgba(239,68,68,.2); border-color: rgba(239,68,68,.5); }
+
+.acoes{ display:flex; gap:10px; margin-top:12px }
+.mensagem{ margin-top:12px; min-height: 28px; font-weight:700 }
+.mensagem.ok{ color: var(--primary); }
+.mensagem.bad{ color: var(--danger); }
+
+.como-jogar{ margin:26px 0 }
+.rodape{ padding:32px 0 50px; color:var(--muted) }
+
+
+/* Dropdown escuro (inclusive lista de opções) */
+select { background-color: var(--bg-card); color: var(--text); border: 1px solid var(--line); }
+select option { background-color: var(--bg-card); color: var(--text); }
+
+/* Cores do personagem chibi inspirado na Docinho (verde) */
+.forca svg .cabeca { fill: none; stroke: var(--line); stroke-width: 4; }
+.forca svg .cabelo, .forca svg .coque { stroke: var(--line); fill: none; stroke-width: 4; }
+.forca svg .olho { fill: var(--line); }
+.forca svg .laco { fill: #22c55e; stroke: #166534; stroke-width: 2; }
+
+/* Animação de dança ao vencer */
+@keyframes dance {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-4deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-4px) rotate(4deg); }
+}
+.chibi.dance { animation: dance 0.35s ease-in-out 8; transform-origin: 160px 150px; }
+
+/* Tremida ao errar tentativa */
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(3px); }
+  30%, 50%, 70% { transform: translateX(-5px); }
+  40%, 60% { transform: translateX(5px); }
+}
+
+
+/* Overlay para GIF de vitória/derrota */
+.gif-overlay{
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.forca{ position: relative; }
+.gif-overlay.show{ display: flex; }
+.gif-overlay::before{
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.35);
+  border-radius: 12px;
+}
+.gif-overlay img{
+  width: min(320px, 70%);
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+  z-index: 2;
+}
+
+
+/* Oculta a figura quando exibirmos o choro após a derrota */
+.forca svg.hide-figure { display:none; }
+
+
+/* Mascote Backend (serverzinho) */
+.forca svg .srv { fill:none; stroke: var(--line); stroke-width:3; }
+.forca svg .eye { fill: var(--line); }
+.forca svg .smile { stroke: var(--line); stroke-width:2; fill:none; stroke-linecap:round; }
+.forca svg .led { fill: var(--accent); }
+.forca svg .bay { stroke: var(--line); stroke-width:2; }
+.forca svg .arm, .forca svg .leg { stroke: var(--line); stroke-width:3; stroke-linecap:round; }
+.forca svg .tool, .forca svg .gear { fill:none; stroke: var(--line); stroke-width:2; }
+.forca svg .gear-cross { stroke: var(--line); stroke-width:2; }
+
+/* Esconder/mostrar partes do personagem */
+.forca .p1, .forca .p2, .forca .p3, .forca .p4, .forca .p5, .forca .p6 { opacity:0; transition: opacity .2s ease-in; }
+.forca.show-1 .p1, .forca.show-2 .p2, .forca.show-3 .p3, .forca.show-4 .p4, .forca.show-5 .p5, .forca.show-6 .p6 { opacity:1; }
+
+/* Reutilizar animação de dança para .character */
+.character.dance { animation: dance 0.35s ease-in-out 8; transform-origin: 160px 150px; }
+
+/* Quando ocultamos a figura após a derrota */
+.forca svg.hide-figure { display:none; }
+
+/* Centraliza o título e a tagline do site */
+header.titulo{
+  text-align: center;
+  margin: 12px auto 8px;  /* sobe um pouco o bloco */
+}
+header.titulo h1{
+  margin: 0;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  letter-spacing: .02em;
+}
+header.titulo .tagline{
+  margin-top: 6px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+

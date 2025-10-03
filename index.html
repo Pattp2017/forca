@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jogo da Forca — Diversão e Aprendizado</title>
+  <meta name="description" content="Um site interativo com o jogo da forca, voltado para diversão e aprendizado.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="titulo">
+  <h1>Jogo da Forca</h1>
+  <p class="tagline">Um site interativo com o jogo da forca, voltado para diversão e aprendizado.</p>
+</header>
+
+  <main class="container">
+    <!-- Linha de controles + Dica grande à direita -->
+    <section class="controls-grid">
+      <div class="controls-left">
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" aria-label="Selecione a categoria de palavras">
+          <option value="aleatorio">Aleatório</option>
+          <option value="frontend">Desenvolvimento Front-end</option>
+          <option value="backend">Desenvolvimento Back-end</option>
+          <option value="seguranca">Fundamentos de Segurança de Software</option>
+        </select>
+        <button id="novoJogo" class="primary" aria-label="Iniciar novo jogo">Novo jogo</button>
+        <button id="modoTema" class="ghost" aria-label="Alternar tema claro/escuro" title="Tema">🌙</button>
+        <button id="btnFullscreen" class="ghost" title="Tela cheia">📺</button>
+
+      </div>
+
+      <div class="dica-box" id="dicaBox" aria-live="polite" aria-atomic="true">
+        <div class="dica-titulo">Dica</div>
+        <div class="dica-conteudo" id="dica">—</div>
+      </div>
+    </section>
+
+    <section class="game">
+      <div class="forca" aria-hidden="true">
+        
+        
+    <svg viewBox="0 0 260 260" role="img" aria-label="Mascote Backend">
+      <!-- Estrutura da forca -->
+      <line class="g-base" x1="10" y1="240" x2="250" y2="240" />
+      <line class="g-poste" x1="50" y1="240" x2="50" y2="20" />
+      <line class="g-topo"  x1="47" y1="20"  x2="160" y2="20" />
+      <line class="g-corda" x1="160" y1="20"  x2="160" y2="54" />
+
+      <!-- Mascote: "serverzinho" com carinha (6 partes) -->
+      <g class="character backend">
+        <!-- p1: cabeça/server topo -->
+        <g class="p1">
+          <rect x="138" y="58" width="44" height="28" rx="6" class="srv" />
+          <circle cx="150" cy="72" r="3" class="eye"/>
+          <circle cx="170" cy="72" r="3" class="eye"/>
+          <path d="M148,78 q10,6 20,0" class="smile"/>
+        </g>
+        <!-- p2: corpo/server meio -->
+        <g class="p2">
+          <rect x="138" y="90" width="44" height="28" rx="6" class="srv" />
+          <circle cx="146" cy="104" r="2" class="led"/>
+          <circle cx="154" cy="104" r="2" class="led"/>
+          <circle cx="162" cy="104" r="2" class="led"/>
+        </g>
+        <!-- p3: corpo/server baixo -->
+        <g class="p3">
+          <rect x="138" y="122" width="44" height="28" rx="6" class="srv" />
+          <path d="M146,136 h28" class="bay"/>
+        </g>
+        <!-- p4: braço esquerdo (chave inglesa) -->
+        <g class="p4">
+          <path d="M138,104 l-20,20" class="arm"/>
+          <path d="M118,124 l-6,6 l8,2 l2,-8 z" class="tool"/>
+        </g>
+        <!-- p5: braço direito (engrenagem) -->
+        <g class="p5">
+          <path d="M182,104 l20,20" class="arm"/>
+          <circle cx="204" cy="124" r="6" class="gear"/>
+          <path d="M204,118 v12 M198,124 h12" class="gear-cross"/>
+        </g>
+        <!-- p6: perninhas/suporte -->
+        <g class="p6">
+          <line x1="148" y1="150" x2="142" y2="182" class="leg"/>
+          <line x1="172" y1="150" x2="178" y2="182" class="leg"/>
+        </g>
+      </g>
+    </svg>
+    
+        <div class="gif-overlay" id="gifOverlay" aria-hidden="true"></div>
+    
+      </div>
+
+      <div class="painel">
+        <div class="status">
+          <div><strong>Tentativas restantes:</strong> <span id="tentativas">6</span></div>
+          <div><strong>Categoria atual:</strong> <span id="catAtual">—</span></div>
+        </div>
+
+        <div id="palavra" class="palavra" aria-live="polite" aria-atomic="true"></div>
+
+        <div id="teclado" class="teclado" aria-label="Teclado virtual"></div>
+
+        <div class="acoes">
+          <button id="revelar" class="secondary">Revelar letra (dica)</button>
+          <button id="reiniciar" class="ghost">Reiniciar</button>
+        </div>
+
+        <div id="mensagem" class="mensagem" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="como-jogar">
+      <h2>Como jogar</h2>
+      <ol>
+        <li>Escolha uma categoria (ou deixe <em>Aleatório</em>).</li>
+        <li>Use o teclado virtual ou o teclado físico para adivinhar letras.</li>
+        <li>Você tem 6 tentativas. A dica pode ajudar!</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="container rodape">
+    <small>© 2025 • Jogo da Forca • Feito para aprender brincando.</small>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
